@@ -11,6 +11,8 @@
     --muted:#6b7f9c;      /* 次要文字 */
     --blue:#2f7bd9;       /* 科技蓝 强调 */
     --teal:#13b8a6;       /* 生命青 点缀 */
+    --cyan:#2bbbd3;       /* 仪表青 (扫描/console) */
+    --deep:#092033;       /* 深底 (暗面板) */
     --bg1:#eef6ff;
     --bg2:#fbfdff;
     --card:#ffffff;
@@ -115,16 +117,45 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
-  /* ===================== HERO ===================== */
-  #hero{padding-top:130px;text-align:center}
-  .hero-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  /* ===================== HERO (memory-scan shell) ===================== */
+  #hero{padding:118px 24px 72px;position:relative;overflow:hidden}
+  #hero::before{content:"";position:absolute;inset:0;z-index:0;background:
+    linear-gradient(rgba(16,54,90,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,54,90,.05) 1px,transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);pointer-events:none}
+  #hero .inner{position:relative;z-index:1}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 468px;gap:44px;align-items:center}
+  .hero-copy{text-align:left}
+  .hero-copy .kicker{justify-content:flex-start}
+  .hero-badges{display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap;margin-top:24px}
   .badge{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px}
   .badge b{color:var(--navy);font-size:20px;font-weight:800}
   .badge span{font-size:12.5px;color:var(--muted);text-align:left;line-height:1.3}
-  .ecg{width:min(560px,84vw);margin:30px auto 4px;display:block}
-  .ecg path{fill:none;stroke:url(#eg);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:1300;stroke-dashoffset:1300;animation:draw 3s ease forwards .4s}
-  @keyframes draw{to{stroke-dashoffset:0}}
-  .entry{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;text-align:left}
+
+  /* memory-scan diagnostic aside (ported from option_e) */
+  .memory-scan{border:1px solid rgba(16,54,90,.16);border-radius:18px;background:#fff;box-shadow:0 32px 80px rgba(16,54,90,.16);overflow:hidden}
+  .scan-head{height:52px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:#fbfdff;color:var(--muted);font-size:11.5px;font-weight:800;letter-spacing:.12em}
+  .scan-body{padding:20px;display:grid;gap:16px}
+  .xray{min-height:236px;border-radius:12px;border:1px solid #173d5c;position:relative;overflow:hidden;background:
+    linear-gradient(rgba(151,190,219,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(151,190,219,.10) 1px,transparent 1px),
+    linear-gradient(180deg,#0a2438,#071927);background-size:28px 28px,28px 28px,auto}
+  .chain-line{position:absolute;left:42px;right:42px;top:120px;height:2px;background:linear-gradient(90deg,var(--cyan) 0%,var(--teal) 43%,rgba(215,88,80,.12) 44%,rgba(215,88,80,.12) 57%,var(--teal) 58%,var(--cyan) 100%);box-shadow:0 0 20px rgba(43,187,211,.35)}
+  .gap{position:absolute;left:45%;top:74px;width:12%;height:96px;border-left:1px dashed rgba(215,88,80,.72);border-right:1px dashed rgba(215,88,80,.72);background:rgba(215,88,80,.08)}
+  .gap::before{content:"MEMORY GAP";position:absolute;left:50%;top:-22px;transform:translateX(-50%);color:#ffb5ae;font-size:10.5px;font-weight:800;letter-spacing:.12em;white-space:nowrap}
+  .scan-node{position:absolute;top:101px;width:38px;height:38px;border-radius:50%;background:#0a2438;border:2px solid var(--cyan);box-shadow:0 0 0 8px rgba(43,187,211,.1),0 0 24px rgba(43,187,211,.34)}
+  .scan-node::after{content:attr(data-label);position:absolute;left:50%;top:48px;transform:translateX(-50%);color:#c6deef;font-size:11.5px;font-weight:700;white-space:nowrap}
+  .node-a{left:44px}.node-b{left:34%}.node-c{right:44px;border-color:var(--red);box-shadow:0 0 0 8px rgba(215,88,80,.1),0 0 24px rgba(215,88,80,.28)}
+  .stamp{position:absolute;right:30px;top:24px;padding:8px 12px;border:1px solid rgba(215,88,80,.6);border-radius:8px;color:#ffd0cc;background:rgba(215,88,80,.12);font-size:18px;font-weight:900;letter-spacing:.04em;transform:rotate(-2deg)}
+  .scan-panels{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .scan-panel{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fbfdff}
+  .scan-panel .lab{color:var(--teal);font-size:11px;font-weight:800;letter-spacing:.1em}
+  .scan-panel strong{display:block;margin-top:7px;color:var(--navy);font-size:15.5px}
+  .scan-panel p{margin-top:6px;color:var(--muted);font-size:12.5px;line-height:1.6}
+
+  .entry{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;text-align:left}
   .entry a{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transition:.22s;display:block;color:inherit}
   .entry a:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#bcd6f5}
   .entry .ix{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--blue)}
@@ -341,7 +372,20 @@
   .demo-sec h2{color:#fff}
   .demo-sec .sub{color:#9fbce6}
   .demo-sec .sec-no{-webkit-text-stroke:2px #2c4d80}
-  .demo-grid{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:center;margin-top:34px}
+  /* console frame (option_e shell) wrapping the interactive demo */
+  #demo{position:relative;overflow:hidden}
+  #demo::before{content:"";position:absolute;inset:0;z-index:0;background:
+    linear-gradient(rgba(157,205,230,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(157,205,230,.05) 1px,transparent 1px);
+    background-size:32px 32px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);pointer-events:none}
+  #demo .inner{position:relative;z-index:1}
+  .console-frame{margin-top:30px;border:1px solid #25406b;border-radius:18px;background:rgba(255,255,255,.03);box-shadow:0 30px 76px rgba(0,0,0,.30);overflow:hidden}
+  .console-head{display:flex;align-items:center;justify-content:space-between;padding:13px 22px;border-bottom:1px solid #25406b;background:rgba(255,255,255,.03);color:#8fb4e6;font-size:11.5px;font-weight:800;letter-spacing:.12em}
+  .console-head .dotrow{display:flex;gap:6px}
+  .console-head .dotrow i{width:9px;height:9px;border-radius:50%;background:#2c4d80}
+  .demo-grid{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:center;padding:34px}
   .phone{width:340px;height:710px;background:#0a0f1a;border-radius:46px;padding:12px;box-shadow:0 30px 70px rgba(0,0,0,.45);position:relative;margin:0 auto;border:1px solid #24344f}
   .phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0a0f1a;border-radius:0 0 16px 16px;z-index:6}
   .screen{position:absolute;inset:12px;border-radius:36px;overflow:hidden;background:linear-gradient(180deg,#eaf3fb,#f6fafe);display:flex;flex-direction:column}
@@ -438,6 +482,7 @@
 
   /* ===================== RESPONSIVE ===================== */
   @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:30px}
     .demo-grid{grid-template-columns:1fr;gap:30px}
     .contrast{grid-template-columns:1fr}
     .pmwrap{grid-template-columns:1fr}
@@ -445,6 +490,8 @@
   @media (max-width:860px){
     section{padding:60px 18px}
     #hero{padding-top:104px}
+    .memory-scan{max-width:540px}
+    .console-frame .demo-grid{padding:18px}
     .g2,.g3,.g4,.entry,.quad,.strat,.tl,.dl,.shots{grid-template-columns:1fr}
     .arch{grid-template-columns:1fr}
     .arch .vs{transform:rotate(90deg)}
@@ -485,19 +532,35 @@
 <!-- ===================== HERO ===================== -->
 <section id="hero">
   <div class="inner">
-    <div class="kicker" style="justify-content:center"><span class="dot" style="background:var(--teal);width:9px;height:9px;border-radius:50%;display:inline-block"></span>智诊科技 · AI产品经理 · 二面作业</div>
-    <h1>好伴AI：不拼规模，<br>把断掉的<span class="accent">陪伴承接</span>焊起来</h1>
-    <p class="sub" style="margin:18px auto 0">竞品分析、增长方案，外加一个能上手点的陪伴链 Demo。<br>结论基于 2384 条应用商店评论聚类和好伴 / 阿福 / 小荷三家控制变量实测。</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="kicker"><span class="dot" style="background:var(--teal);width:9px;height:9px;border-radius:50%;display:inline-block"></span>智诊科技 · AI产品经理 · 二面作业</div>
+        <h1>好伴AI：不拼规模，<br>把断掉的<span class="accent">陪伴承接</span>焊起来</h1>
+        <p class="sub" style="margin-top:18px;max-width:560px">竞品分析、增长方案，外加一个能上手点的陪伴链 Demo。<br>结论基于 2384 条应用商店评论聚类和好伴 / 阿福 / 小荷三家控制变量实测。</p>
+        <div class="hero-badges">
+          <div class="badge"><b>2384</b><span>条应用商店评论<br>主题聚类 + 情感分析</span></div>
+          <div class="badge"><b>3 家</b><span>好伴 / 阿福 / 小荷<br>同份报告控制变量实测</span></div>
+          <div class="badge"><b>9 份</b><span>分层分析底稿 · 可追溯<br>用户 / 技术 / 市场 / 商业</span></div>
+        </div>
+      </div>
 
-    <svg class="ecg" viewBox="0 0 620 80" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="eg" x1="0" x2="1"><stop offset="0" stop-color="#2f7bd9"/><stop offset="1" stop-color="#13b8a6"/></linearGradient></defs>
-      <path d="M0 40 H120 L140 40 L152 18 L166 62 L178 40 H300 L318 40 L330 10 L346 70 L360 40 H480 L496 40 L508 24 L520 54 L532 40 H620"/>
-    </svg>
-
-    <div class="hero-badges">
-      <div class="badge"><b>2384</b><span>条应用商店评论<br>主题聚类 + 情感分析</span></div>
-      <div class="badge"><b>3 家</b><span>好伴 / 阿福 / 小荷<br>同份报告控制变量实测</span></div>
-      <div class="badge"><b>9 份</b><span>分层分析底稿 · 可追溯<br>用户 / 技术 / 市场 / 商业</span></div>
+      <aside class="memory-scan" aria-label="记忆断点诊断画面">
+        <div class="scan-head"><span>HEALTH MEMORY SCAN</span><span>CASE HB-02</span></div>
+        <div class="scan-body">
+          <div class="xray">
+            <div class="chain-line"></div>
+            <div class="gap"></div>
+            <div class="scan-node node-a" data-label="上传报告"></div>
+            <div class="scan-node node-b" data-label="完成解读"></div>
+            <div class="scan-node node-c" data-label="追问失忆"></div>
+            <div class="stamp">刚传就忘</div>
+          </div>
+          <div class="scan-panels">
+            <div class="scan-panel"><div class="lab">DIAGNOSIS</div><strong>报告没有进入长期档案</strong><p>上传和解读停留在单次会话，无法支撑连续陪伴。</p></div>
+            <div class="scan-panel"><div class="lab">PRODUCT BET</div><strong>从问答工具变成健康记忆层</strong><p>自动归档 → 真记忆 → 主动关怀 → 闭环承接。</p></div>
+          </div>
+        </div>
+      </aside>
     </div>
 
     <div class="entry">
@@ -947,7 +1010,9 @@
     <div class="sec-head reveal"><div class="sec-no">03</div><div><div class="kicker" style="color:#7fd6ca">可交互 Demo</div><h2>陪伴链 Demo · 亲手体验</h2></div></div>
     <p class="sub reveal">30 秒体验"陪伴链修好后是什么感觉"。场景：<strong style="color:#fff">子女给爸爸（张建国 45 岁）建档</strong>，顺带预演 P1 家庭健康。点右侧步骤或按钮逐屏推进。</p>
 
-    <div class="demo-grid">
+    <div class="console-frame reveal">
+      <div class="console-head"><span>COMPANION CHAIN · PRODUCT FRAME</span><span class="dotrow"><i></i><i></i><i></i></span></div>
+      <div class="demo-grid">
       <!-- phone -->
       <div class="phone">
         <div class="screen">
@@ -975,6 +1040,7 @@
           <button class="dbtn ghost" id="dreset">重新体验</button>
         </div>
         <p class="note" style="color:#7f9bc4;margin-top:16px">这是前端模拟交互，用于演示"陪伴链焊起来"后的产品体验，非真实接口。</p>
+      </div>
       </div>
     </div>
 
