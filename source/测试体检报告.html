@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>健康体检报告（测试合成样本）</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#f4f5f7;color:#1f2933;padding:18px;font-size:14px;line-height:1.5}
+  .page{max-width:780px;margin:0 auto;background:#fff;border:1px solid #d8dde3;padding:28px 30px 36px}
+  .hd{text-align:center;border-bottom:3px double #2b4a7a;padding-bottom:14px;margin-bottom:16px}
+  .hd h1{font-size:22px;color:#1c3a66;letter-spacing:2px}
+  .hd .org{font-size:13px;color:#5a6b80;margin-top:6px}
+  .hd .no{font-size:12px;color:#8a97a8;margin-top:4px}
+  .info{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 14px;font-size:13px;background:#f7f9fb;border:1px solid #e3e8ee;padding:12px 14px;margin-bottom:18px}
+  .info b{color:#1c3a66}
+  h2{font-size:15px;color:#fff;background:#2b4a7a;padding:6px 12px;margin:18px 0 0;border-radius:3px 3px 0 0}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{border:1px solid #dde3ea;padding:7px 9px;text-align:center}
+  th{background:#eef3f8;color:#2b4a7a;font-weight:600}
+  td.item{text-align:left;width:30%}
+  td.ref{color:#7a8696;font-size:12px}
+  .up{color:#c0392b;font-weight:700}
+  .down{color:#2471a3;font-weight:700}
+  .trend{color:#b9770e;font-size:11px}
+  .note{background:#fffbe9;border:1px solid #f0e0a8;padding:12px 14px;margin-top:18px;font-size:13px;line-height:1.8}
+  .note b{color:#9a6b00}
+  .sum{background:#f7f9fb;border:1px solid #e3e8ee;padding:14px 16px;margin-top:14px;font-size:13px;line-height:1.9}
+  .sum h3{color:#1c3a66;font-size:14px;margin-bottom:6px}
+  .foot{margin-top:20px;font-size:11px;color:#9aa6b4;text-align:center;border-top:1px solid #e3e8ee;padding-top:10px}
+  .tag{display:inline-block;font-size:10px;color:#c0392b;border:1px solid #c0392b;border-radius:3px;padding:0 5px;margin-left:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hd">
+    <h1>健 康 体 检 报 告</h1>
+    <div class="org">康民健康体检中心　Kangmin Health Examination Center</div>
+    <div class="no">报告编号：KM-2026-0512-3387　　体检类别：职工年度体检</div>
+  </div>
+
+  <div class="info">
+    <div><b>姓名</b>　张建国</div><div><b>性别</b>　男</div><div><b>年龄</b>　45岁</div><div><b>编号</b>　3387</div>
+    <div><b>身高</b>　175 cm</div><div><b>体重</b>　82 kg</div><div><b>BMI</b>　26.8 <span class="up">↑</span></div><div><b>体检日期</b>　2026-05-12</div>
+  </div>
+
+  <h2>一、一般检查</h2>
+  <table>
+    <tr><th class="item">项目</th><th>本次(2026)</th><th>2025</th><th>2024</th><th>参考范围</th><th>提示</th></tr>
+    <tr><td class="item">体重指数 BMI</td><td class="up">26.8 ↑</td><td>25.6</td><td>24.3</td><td class="ref">18.5–23.9</td><td>超重<span class="trend">·逐年上升</span></td></tr>
+    <tr><td class="item">血压（收缩压/舒张压）</td><td class="up">138 / 88 ↑</td><td>132 / 85</td><td>126 / 80</td><td class="ref">&lt;120 / 80</td><td>正常高值</td></tr>
+    <tr><td class="item">腰围</td><td class="up">92 cm ↑</td><td>89</td><td>86</td><td class="ref">&lt;90 cm</td><td>中心性肥胖</td></tr>
+  </table>
+
+  <h2>二、血脂四项</h2>
+  <table>
+    <tr><th class="item">项目</th><th>本次(2026)</th><th>2025</th><th>2024</th><th>参考范围</th><th>提示</th></tr>
+    <tr><td class="item">总胆固醇 TC</td><td class="up">5.8 ↑</td><td>5.4</td><td>5.1</td><td class="ref">&lt;5.2 mmol/L</td><td>偏高</td></tr>
+    <tr><td class="item">低密度脂蛋白 LDL-C</td><td class="up">3.9 ↑</td><td>3.5</td><td>3.1</td><td class="ref">&lt;3.4 mmol/L</td><td>偏高<span class="trend">·连续3年上升</span></td></tr>
+    <tr><td class="item">甘油三酯 TG</td><td class="up">2.4 ↑</td><td>2.0</td><td>1.7</td><td class="ref">&lt;1.7 mmol/L</td><td>偏高</td></tr>
+    <tr><td class="item">高密度脂蛋白 HDL-C</td><td class="down">0.9 ↓</td><td>1.0</td><td>1.1</td><td class="ref">&gt;1.0 mmol/L</td><td>偏低</td></tr>
+  </table>
+
+  <h2>三、血糖</h2>
+  <table>
+    <tr><th class="item">项目</th><th>本次(2026)</th><th>2025</th><th>2024</th><th>参考范围</th><th>提示</th></tr>
+    <tr><td class="item">空腹血糖 FPG</td><td class="up">6.2 ↑</td><td>5.9</td><td>5.6</td><td class="ref">3.9–6.1 mmol/L</td><td>临界偏高<span class="trend">·逐年逼近上限</span></td></tr>
+    <tr><td class="item">糖化血红蛋白 HbA1c</td><td>6.0 %</td><td>5.8</td><td>5.6</td><td class="ref">4.0–6.0 %</td><td>正常高值</td></tr>
+  </table>
+
+  <h2>四、肝功能</h2>
+  <table>
+    <tr><th class="item">项目</th><th>本次(2026)</th><th>2025</th><th>2024</th><th>参考范围</th><th>提示</th></tr>
+    <tr><td class="item">谷丙转氨酶 ALT</td><td class="up">58 ↑</td><td>46</td><td>35</td><td class="ref">9–50 U/L</td><td>偏高</td></tr>
+    <tr><td class="item">谷草转氨酶 AST</td><td class="up">45 ↑</td><td>38</td><td>30</td><td class="ref">15–40 U/L</td><td>偏高</td></tr>
+    <tr><td class="item">γ-谷氨酰转肽酶 GGT</td><td class="up">70 ↑</td><td>55</td><td>42</td><td class="ref">10–60 U/L</td><td>偏高</td></tr>
+  </table>
+
+  <h2>五、肾功能 / 尿酸</h2>
+  <table>
+    <tr><th class="item">项目</th><th>本次(2026)</th><th>2025</th><th>2024</th><th>参考范围</th><th>提示</th></tr>
+    <tr><td class="item">血尿酸 UA</td><td class="up">486 ↑</td><td>450</td><td>410</td><td class="ref">208–428 μmol/L</td><td>偏高</td></tr>
+    <tr><td class="item">肌酐 Cr</td><td>88</td><td>85</td><td>83</td><td class="ref">57–97 μmol/L</td><td>正常</td></tr>
+  </table>
+
+  <h2>六、甲状腺功能</h2>
+  <table>
+    <tr><th class="item">项目</th><th>本次(2026)</th><th>2025</th><th>2024</th><th>参考范围</th><th>提示</th></tr>
+    <tr><td class="item">促甲状腺激素 TSH</td><td class="up">5.6 ↑</td><td>4.8</td><td>3.9</td><td class="ref">0.27–4.2 mIU/L</td><td>偏高（亚临床甲减待排）</td></tr>
+    <tr><td class="item">游离甲状腺素 FT4</td><td>14.2</td><td>14.8</td><td>15.1</td><td class="ref">12–22 pmol/L</td><td>正常</td></tr>
+  </table>
+
+  <h2>七、肿瘤标志物</h2>
+  <table>
+    <tr><th class="item">项目</th><th>本次(2026)</th><th>2025</th><th>2024</th><th>参考范围</th><th>提示</th></tr>
+    <tr><td class="item">前列腺特异抗原 PSA</td><td>3.5</td><td>2.6</td><td>1.8</td><td class="ref">0–4.0 ng/mL</td><td>范围内<span class="trend">·3年近翻倍、上升陡</span></td></tr>
+    <tr><td class="item">甲胎蛋白 AFP</td><td>3.1</td><td>2.9</td><td>2.8</td><td class="ref">0–7 ng/mL</td><td>正常</td></tr>
+    <tr><td class="item">癌胚抗原 CEA</td><td>2.2</td><td>2.0</td><td>1.9</td><td class="ref">0–5 ng/mL</td><td>正常</td></tr>
+  </table>
+
+  <h2>八、影像检查（腹部 B 超）</h2>
+  <table>
+    <tr><th class="item">检查</th><th colspan="4">所见</th><th>提示</th></tr>
+    <tr><td class="item">肝脏</td><td colspan="4" style="text-align:left">肝实质回声增粗、增强，远场衰减</td><td class="up">中度脂肪肝</td></tr>
+    <tr><td class="item">胆囊</td><td colspan="4" style="text-align:left">胆囊壁附见约 0.4cm 强回声，后方无声影</td><td>胆囊息肉样变</td></tr>
+    <tr><td class="item">双肾 / 胰脾</td><td colspan="4" style="text-align:left">未见明显异常</td><td>正常</td></tr>
+  </table>
+
+  <div class="note">
+    <b>受检者自述：</b>近3个月偶感乏力、餐后困倦明显，体重较去年略增；睡眠一般，应酬较多、常饮酒。<br>
+    <b>既往史 / 家族史：</b>父亲患2型糖尿病、高血压；本人无规律服药史，无已知药物过敏。
+  </div>
+
+  <div class="sum">
+    <h3>主检医师建议</h3>
+    存在超重、血脂偏高、脂肪肝、尿酸偏高、空腹血糖临界等情况。建议低脂低糖饮食、控制体重、适当运动、戒酒，定期复查。甲状腺及前列腺相关指标请结合临床随访。
+  </div>
+
+  <div class="foot">
+    本报告为面试作业控制变量测试用<b>合成样本</b>，所有姓名与数据均为虚构，不对应任何真实个人，仅用于对比不同AI健康产品的解读能力。
+  </div>
+</div>
+</body>
+</html>
