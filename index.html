@@ -11,8 +11,6 @@
     --muted:#6b7f9c;      /* 次要文字 */
     --blue:#2f7bd9;       /* 科技蓝 强调 */
     --teal:#13b8a6;       /* 生命青 点缀 */
-    --cyan:#2bbbd3;       /* 仪表青 (扫描/console) */
-    --deep:#092033;       /* 深底 (暗面板) */
     --bg1:#eef6ff;
     --bg2:#fbfdff;
     --card:#ffffff;
@@ -46,17 +44,19 @@
   #bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));width:0;z-index:120;border-radius:0 3px 3px 0;transition:width .1s linear}
 
   /* ===== nav ===== */
-  nav{position:fixed;top:0;left:0;right:0;height:60px;z-index:100;
-    background:rgba(255,255,255,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav{position:fixed;top:0;left:0;right:0;height:62px;z-index:100;
+    background:rgba(250,252,255,.66);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(19,41,75,.06)}
   .nav-in{max-width:var(--maxw);margin:0 auto;height:100%;display:flex;align-items:center;gap:18px;padding:0 24px}
-  .brand{font-weight:700;color:var(--navy);font-size:15.5px;display:flex;align-items:center;gap:9px;white-space:nowrap}
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(19,184,166,.5);animation:pulse 2s infinite}
+  .brand{font-weight:700;color:var(--navy);font-size:15px;display:flex;align-items:center;gap:9px;white-space:nowrap;letter-spacing:.01em}
+  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(19,184,166,.5);animation:pulse 2s infinite}
   @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(19,184,166,0)}100%{box-shadow:0 0 0 0 rgba(19,184,166,0)}}
-  .nav-links{margin-left:auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+  .nav-links{margin-left:auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
   .nav-links::-webkit-scrollbar{display:none}
-  .nav-links a{font-size:14px;color:var(--muted);padding:7px 13px;border-radius:999px;white-space:nowrap;transition:.18s;font-weight:500}
-  .nav-links a:hover{color:var(--navy);background:var(--soft)}
-  .nav-links a.on{color:#fff;background:linear-gradient(135deg,var(--blue),var(--teal))}
+  .nav-links a{font-size:14px;color:var(--muted);padding:8px 15px;border-radius:8px;white-space:nowrap;font-weight:500;letter-spacing:.01em;transition:color .18s ease,background .18s ease}
+  .nav-links a:hover{color:var(--navy);background:rgba(19,41,75,.045)}
+  .nav-links a.on{color:var(--navy);background:rgba(19,41,75,.07);font-weight:600}
 
   /* ===== layout ===== */
   section{position:relative;z-index:1;padding:84px 24px}
@@ -66,7 +66,7 @@
   #hero.page.active{display:flex}
   body.on-home{overflow:hidden}
   .inner{max-width:var(--maxw);margin:0 auto}
-  .band{background:rgba(255,255,255,.5);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .band{background:rgba(255,255,255,.5)}
 
   .kicker{display:inline-flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.16em;color:var(--blue);font-weight:700;margin-bottom:14px;text-transform:uppercase}
   .kicker::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:2px}
@@ -77,7 +77,7 @@
   .lead{font-size:16.5px;color:var(--ink);line-height:1.9;max-width:820px}
   .accent{background:linear-gradient(90deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
   p{margin:0}
-  .mt8{margin-top:8px}.mt14{margin-top:14px}.mt20{margin-top:20px}.mt28{margin-top:28px}.mt40{margin-top:40px}
+  .mt8{margin-top:8px}.mt14{margin-top:14px}.mt20{margin-top:20px}.mt28{margin-top:28px}.mt40{margin-top:78px}
   strong{color:var(--navy);font-weight:700}
   .hl{background:linear-gradient(transparent 62%, #ffe9a8 62%);padding:0 2px}
 
@@ -103,6 +103,7 @@
   .tag.amber{color:#b97b18;background:#fdf3e1;border-color:#f3dcae}
 
   .num{font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--navy);line-height:1.05;letter-spacing:-.02em}
+  .num-cap{font-size:12px;color:var(--muted);font-weight:600;margin-top:3px;letter-spacing:.02em}
   .num small{font-size:.46em;font-weight:700;color:var(--muted);letter-spacing:0}
 
   ul.clean{list-style:none}
@@ -122,45 +123,23 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
-  /* ===================== HERO (memory-scan shell) ===================== */
-  #hero{min-height:100vh;align-items:center;padding:74px 24px 34px;position:relative;overflow:hidden}
-  #hero::before{content:"";position:absolute;inset:0;z-index:0;background:
-    linear-gradient(rgba(16,54,90,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(16,54,90,.05) 1px,transparent 1px);
-    background-size:44px 44px;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);pointer-events:none}
-  #hero .inner{position:relative;z-index:1}
-  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 468px;gap:44px;align-items:center}
-  .hero-copy{text-align:left}
-  .hero-copy .kicker{justify-content:flex-start}
-  .hero-badges{display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap;margin-top:24px}
+  /* ===================== HERO (first version: centered + ECG) ===================== */
+  #hero{min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:74px 24px 40px;position:relative;overflow:hidden}
+  #hero .inner{width:100%;position:relative;z-index:1}
+  #hero .kicker{justify-content:center}
+  .hero-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
   .badge{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px}
   .badge b{color:var(--navy);font-size:20px;font-weight:800}
   .badge span{font-size:12.5px;color:var(--muted);text-align:left;line-height:1.3}
+  .ecg{width:min(560px,84vw);margin:30px auto 4px;display:block}
+  .ecg path{fill:none;stroke:url(#eg);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1300;stroke-dashoffset:1300;
+    filter:drop-shadow(0 1px 4px rgba(43,187,211,.16));
+    animation:draw 2.6s ease forwards .3s, ecgBreathe 4.5s ease-in-out 2.9s infinite}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes ecgBreathe{0%,100%{opacity:1}50%{opacity:.42}}
+  @media (prefers-reduced-motion:reduce){.ecg path{animation:draw 2.6s ease forwards .3s}}
 
-  /* memory-scan diagnostic aside (ported from option_e) */
-  .memory-scan{border:1px solid rgba(16,54,90,.16);border-radius:18px;background:#fff;box-shadow:0 32px 80px rgba(16,54,90,.16);overflow:hidden}
-  .scan-head{height:52px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:#fbfdff;color:var(--muted);font-size:11.5px;font-weight:800;letter-spacing:.12em}
-  .scan-body{padding:20px;display:grid;gap:16px}
-  .xray{min-height:236px;border-radius:12px;border:1px solid #173d5c;position:relative;overflow:hidden;background:
-    linear-gradient(rgba(151,190,219,.10) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(151,190,219,.10) 1px,transparent 1px),
-    linear-gradient(180deg,#0a2438,#071927);background-size:28px 28px,28px 28px,auto}
-  .chain-line{position:absolute;left:42px;right:42px;top:120px;height:2px;background:linear-gradient(90deg,var(--cyan) 0%,var(--teal) 43%,rgba(215,88,80,.12) 44%,rgba(215,88,80,.12) 57%,var(--teal) 58%,var(--cyan) 100%);box-shadow:0 0 20px rgba(43,187,211,.35)}
-  .gap{position:absolute;left:45%;top:74px;width:12%;height:96px;border-left:1px dashed rgba(215,88,80,.72);border-right:1px dashed rgba(215,88,80,.72);background:rgba(215,88,80,.08)}
-  .gap::before{content:"MEMORY GAP";position:absolute;left:50%;top:-22px;transform:translateX(-50%);color:#ffb5ae;font-size:10.5px;font-weight:800;letter-spacing:.12em;white-space:nowrap}
-  .scan-node{position:absolute;top:101px;width:38px;height:38px;border-radius:50%;background:#0a2438;border:2px solid var(--cyan);box-shadow:0 0 0 8px rgba(43,187,211,.1),0 0 24px rgba(43,187,211,.34)}
-  .scan-node::after{content:attr(data-label);position:absolute;left:50%;top:48px;transform:translateX(-50%);color:#c6deef;font-size:11.5px;font-weight:700;white-space:nowrap}
-  .node-a{left:44px}.node-b{left:34%}.node-c{right:44px;border-color:var(--red);box-shadow:0 0 0 8px rgba(215,88,80,.1),0 0 24px rgba(215,88,80,.28)}
-  .stamp{position:absolute;right:30px;top:24px;padding:8px 12px;border:1px solid rgba(215,88,80,.6);border-radius:8px;color:#ffd0cc;background:rgba(215,88,80,.12);font-size:18px;font-weight:900;letter-spacing:.04em;transform:rotate(-2deg)}
-  .scan-panels{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .scan-panel{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fbfdff}
-  .scan-panel .lab{color:var(--teal);font-size:11px;font-weight:800;letter-spacing:.1em}
-  .scan-panel strong{display:block;margin-top:7px;color:var(--navy);font-size:15.5px}
-  .scan-panel p{margin-top:6px;color:var(--muted);font-size:12.5px;line-height:1.6}
-
-  .entry{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;text-align:left}
+  .entry{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;text-align:left}
   .entry a{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transition:.22s;display:block;color:inherit}
   .entry a:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#bcd6f5}
   .entry .ix{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--blue)}
@@ -169,7 +148,9 @@
   .entry .go{margin-top:12px;font-size:13px;color:var(--teal);font-weight:700}
 
   /* ===================== QUADRANT ===================== */
-  .quad-wrap{position:relative;margin-top:30px;padding:34px 30px 30px 56px}
+  .quad-wrap{margin-top:30px}
+  .quad-row{display:flex;align-items:center;gap:14px}
+  .quad-row>.quad{flex:1;min-width:0}
   .quad{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
   .qcell{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);transition:.2s;cursor:default;min-height:150px}
   .qcell:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
@@ -180,8 +161,9 @@
   .chip:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
   .chip.t{background:var(--soft2);border-color:#bff0e8}
   .chip.t:hover{background:var(--teal);border-color:var(--teal)}
-  .axis-y{position:absolute;left:8px;top:50%;transform:rotate(-90deg) translateX(50%);transform-origin:left center;font-size:12px;color:var(--muted);letter-spacing:.08em;white-space:nowrap}
-  .axis-x{text-align:center;font-size:12px;color:var(--muted);letter-spacing:.08em;margin-top:14px}
+  .axis-y{flex:none;align-self:stretch;position:relative;width:24px}
+  .axis-y>span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;font-size:12px;color:var(--muted);letter-spacing:.08em}
+  .axis-x{text-align:center;font-size:12px;color:var(--muted);letter-spacing:.08em;margin-top:14px;padding-left:28px}
 
   /* ===================== SCORECARD ===================== */
   .sc{font-size:14px}
@@ -193,9 +175,6 @@
   .col-hb{background:#f3fffd}
 
   /* ===================== MEMORY FAIL ===================== */
-  .mem-banner{background:linear-gradient(100deg,#fdeceb,#fff5e8);border:1px solid #f6cdc9;border-radius:var(--r);padding:20px 24px;margin-top:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .mem-banner .big{font-size:30px;font-weight:800;color:var(--red);white-space:nowrap}
-  .mem-banner p{font-size:14.5px;color:var(--ink);flex:1;min-width:240px}
   .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
   .shot{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
   .shot .cap{padding:8px 16px 4px;font-weight:800;color:var(--navy);font-size:15px;display:flex;align-items:center;justify-content:space-between}
@@ -320,7 +299,8 @@
   .pmwrap{margin-top:26px;display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:center}
   .pm{position:relative;aspect-ratio:1/.82;background:linear-gradient(180deg,#f7fbff,#fff);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:14px}
   .pm .yl,.pm .xl{position:absolute;font-size:11.5px;color:var(--muted);font-weight:700}
-  .pm .yl{left:8px;top:50%;transform:rotate(-90deg) translateX(50%);transform-origin:left}
+  .pm .yl{left:-2px;top:0;bottom:0;width:24px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  .pm .yl>span{display:inline-block;white-space:nowrap;transform:rotate(-90deg)}
   .pm .xl{bottom:6px;left:50%;transform:translateX(-50%)}
   .pm .gl{position:absolute;background:var(--line)}
   .pm .pt{position:absolute;transform:translate(-50%,50%);display:flex;flex-direction:column;align-items:center;cursor:default}
@@ -351,9 +331,14 @@
   /* ===================== CHAIN (一鱼两吃) ===================== */
   .chain{margin-top:26px;background:linear-gradient(135deg,var(--soft),var(--soft2));border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow);text-align:center}
   .chain .core{display:inline-block;background:var(--navy);color:#fff;font-weight:800;font-size:17px;padding:14px 28px;border-radius:14px;box-shadow:var(--shadow)}
-  .chain .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
-  .chain .arm{padding-top:26px;position:relative}
-  .chain .arm::before{content:"";position:absolute;top:0;left:50%;width:2px;height:26px;background:var(--teal)}
+  .chain .cline{position:relative;height:34px}
+  .chain .cline i{position:absolute;background:var(--teal);border-radius:1px}
+  .chain .cline .stem{left:50%;top:0;width:2px;height:15px;transform:translateX(-50%)}
+  .chain .cline .bar{top:14px;left:calc(25% - 5px);right:calc(25% - 5px);height:2px}
+  .chain .cline .dropL{left:calc(25% - 5px);top:14px;width:2px;height:20px}
+  .chain .cline .dropR{right:calc(25% - 5px);top:14px;width:2px;height:20px}
+  .chain .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:0}
+  .chain .arm{position:relative}
   .chain .arm .pill{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
   .chain .arm .pill .h{font-weight:800;color:var(--navy);font-size:16px}
   .chain .arm .pill .h .em{color:var(--teal)}
@@ -481,7 +466,7 @@
   #lb .close{position:absolute;top:20px;right:26px;color:#fff;font-size:30px;cursor:pointer;line-height:1}
 
   /* footer */
-  footer{padding:46px 24px 60px;text-align:center;border-top:1px solid var(--line);background:rgba(255,255,255,.5)}
+  footer{padding:46px 24px 60px;text-align:center;background:transparent}
   footer .ft-q{font-size:16px;color:var(--navy);font-weight:700;max-width:680px;margin:0 auto}
   footer .ft-m{margin-top:14px;font-size:13.5px;color:var(--muted)}
 
@@ -530,9 +515,9 @@
     <div class="brand"><span class="dot"></span>好伴AI · 二面作业</div>
     <div class="nav-links" id="navlinks">
       <a href="#hero">首页</a>
-      <a href="#competition">一 · 竞品分析</a>
-      <a href="#growth">二 · 增长方案</a>
-      <a href="#demo">三 · 陪伴链Demo</a>
+      <a href="#competition">竞品分析</a>
+      <a href="#growth">增长方案</a>
+      <a href="#demo">陪伴链Demo</a>
       <a href="#appendix">证据附录</a>
     </div>
   </div>
@@ -541,36 +526,14 @@
 <!-- ===================== HERO ===================== -->
 <section id="hero" class="page">
   <div class="inner">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <div class="kicker"><span class="dot" style="background:var(--teal);width:9px;height:9px;border-radius:50%;display:inline-block"></span>智诊科技 · AI产品经理 · 二面作业</div>
-        <h1>好伴AI：不拼规模，<br>把断掉的<span class="accent">陪伴承接</span>焊起来</h1>
-        <p class="sub" style="margin-top:18px;max-width:560px">竞品分析、增长方案，外加一个能上手点的陪伴链 Demo。<br>结论基于 2384 条应用商店评论聚类和好伴 / 阿福 / 小荷三家控制变量实测。</p>
-        <div class="hero-badges">
-          <div class="badge"><b>2384</b><span>条应用商店评论<br>主题聚类 + 情感分析</span></div>
-          <div class="badge"><b>3 家</b><span>好伴 / 阿福 / 小荷<br>同份报告控制变量实测</span></div>
-          <div class="badge"><b>9 份</b><span>分层分析底稿 · 可追溯<br>用户 / 技术 / 市场 / 商业</span></div>
-        </div>
-      </div>
+    <div class="kicker"><span class="dot" style="background:var(--teal);width:9px;height:9px;border-radius:50%;display:inline-block"></span>智诊科技 · AI产品经理 · 二面作业</div>
+    <h1>好伴AI：与其拼规模<br>不如把断掉的<span class="accent">陪伴接回来</span></h1>
+    <p class="sub" style="margin:18px auto 0;max-width:620px">结论基于 2384 条应用商店评论聚类和好伴 / 阿福 / 小荷三家控制变量实测</p>
 
-      <aside class="memory-scan" aria-label="记忆断点诊断画面">
-        <div class="scan-head"><span>HEALTH MEMORY SCAN</span><span>CASE HB-02</span></div>
-        <div class="scan-body">
-          <div class="xray">
-            <div class="chain-line"></div>
-            <div class="gap"></div>
-            <div class="scan-node node-a" data-label="上传报告"></div>
-            <div class="scan-node node-b" data-label="完成解读"></div>
-            <div class="scan-node node-c" data-label="追问失忆"></div>
-            <div class="stamp">刚传就忘</div>
-          </div>
-          <div class="scan-panels">
-            <div class="scan-panel"><div class="lab">DIAGNOSIS</div><strong>报告没有进入长期档案</strong><p>上传和解读停留在单次会话，无法支撑连续陪伴。</p></div>
-            <div class="scan-panel"><div class="lab">PRODUCT BET</div><strong>从问答工具变成健康记忆层</strong><p>自动归档 → 真记忆 → 主动关怀 → 闭环承接。</p></div>
-          </div>
-        </div>
-      </aside>
-    </div>
+    <svg class="ecg" viewBox="0 0 620 80" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="eg" x1="0" x2="1"><stop offset="0" stop-color="#2f7bd9"/><stop offset="1" stop-color="#13b8a6"/></linearGradient></defs>
+      <path d="M0 40 H120 L140 40 L152 18 L166 62 L178 40 H300 L318 40 L330 10 L346 70 L360 40 H480 L496 40 L508 24 L520 54 L532 40 H620"/>
+    </svg>
 
     <div class="entry">
       <a href="#competition">
@@ -622,8 +585,9 @@
       <div class="kicker">竞品全景与选品</div>
       <h3>按"是否抢同一批用户 × 是否做同一种业务"分四象限</h3>
       <p class="sub mt8">悬停查看每类竞品的定位。重点实测三家——好伴、阿福（直接竞品头部）、小荷（口碑标杆）；其余全象限桌面调研覆盖，无盲区。</p>
-      <div class="quad-wrap card" style="box-shadow:none;border:none;background:transparent;padding-left:48px">
-        <span class="axis-y">← 抢同一批用户 · 正面抢心智 →</span>
+      <div class="quad-wrap">
+        <div class="quad-row">
+        <span class="axis-y"><span>← 抢同一批用户 · 正面抢心智 →</span></span>
         <div class="quad">
           <div class="qcell star">
             <div class="qh">直接竞品 <span class="tag">★ 重点实测</span></div>
@@ -645,6 +609,7 @@
             <div class="qd">有能力但还没进中国 C 端健康</div>
             <span class="chip">ChatGPT Health</span><span class="chip">OpenEvidence</span><span class="chip">Hims</span>
           </div>
+        </div>
         </div>
         <div class="axis-x">← 做同一种业务（C 端健康问答 / 解读） · 跨界生意入口 →</div>
       </div>
@@ -674,11 +639,7 @@
     <div class="reveal mt40">
       <div class="kicker">实测走查 · 结果二 · 探索能力杀手锏</div>
       <h3>记忆测试：三家全翻车</h3>
-      <p class="sub mt8">解读完紧接着问"我上次的报告怎么样"——三家实测全部没兑现。差异不在"读报告"，在<strong>读完之后</strong>。</p>
-      <div class="mem-banner">
-        <div class="big">3 / 3 翻车</div>
-        <p>同一个动作：上传报告 → 解读完成 → 紧接着问"我上次的报告怎么样"。这是陪伴的第一道门槛，没有一家迈过去。</p>
-      </div>
+      <p class="sub mt8">解读完紧接着问"我上次的报告怎么样"——三家实测全部没兑现。差异在<strong>读完后的承接</strong>。</p>
       <div class="shots">
         <div class="shot">
           <div class="cap">好伴 AI <span class="x">✕ 教你去别处自己查</span></div>
@@ -755,12 +716,12 @@
         <div class="brow"><div class="bn">小荷 AI 医生<small>样本 329</small></div><div class="track"><div class="fill" data-w="13.7"></div></div><div class="bv">13.7%</div></div>
         <div class="brow hb"><div class="bn">好伴 AI<small>样本 48 · 侧证</small></div><div class="track"><div class="fill" data-w="29.2"></div></div><div class="bv">29.2%</div></div>
         <div class="brow"><div class="bn">蚂蚁阿福<small>样本 500</small></div><div class="track"><div class="fill" data-w="24.4"></div></div><div class="bv">24.4%</div></div>
-        <div class="brow bad"><div class="bn">平安好医生<small>样本 188</small></div><div class="track"><div class="fill" data-w="77.1"></div></div><div class="bv">77.1%</div></div>
+        <div class="brow bad"><div class="bn">薄荷健康<small>样本 500</small></div><div class="track"><div class="fill" data-w="65.2"></div></div><div class="bv">65.2%</div></div>
       </div>
       <div class="grid g3 mt20">
-        <div class="card"><div class="num" style="color:var(--red)">23%</div><p class="mt8">阿福差评中"广告/营销/骚扰"占比——履约变现对中立性的反噬。</p></div>
-        <div class="card"><div class="num" style="color:var(--red)">34.7%</div><p class="mt8">薄荷健康差评中"付费纠纷/套路"占比——会员套路是变现的反面教材。</p></div>
-        <div class="card"><div class="num" style="color:var(--teal)">≈ 0</div><p class="mt8">全行业"记得我/懂我"好评占比都极低（好伴 2.9%、小荷 1.4%）——长期记忆是公认空白。</p></div>
+        <div class="card"><div class="num" style="color:var(--red)">23%</div><div class="num-cap">占阿福差评</div><p class="mt8">阿福差评中"广告/营销/骚扰"占比——履约变现对中立性的反噬。</p></div>
+        <div class="card"><div class="num" style="color:var(--red)">34.7%</div><div class="num-cap">占薄荷差评</div><p class="mt8">薄荷健康差评中"付费纠纷/套路"占比——会员套路是变现的反面教材。</p></div>
+        <div class="card"><div class="num" style="color:var(--teal)">≈ 0</div><div class="num-cap">占好评</div><p class="mt8">全行业"记得我/懂我"好评占比都极低（好伴 2.9%、小荷 1.4%）——长期记忆是公认空白。</p></div>
       </div>
     </div>
 
@@ -840,6 +801,9 @@
       <div class="quote mt28">好伴 = 唯一一个真正记得你、会主动管你全家健康、又不向你推销的 AI 健康管家。</div>
       <p class="sub mt14">中立对抗阿福，真记忆和主动填行业真空，全家撬动子女付费者。四个要素缺一不可，合起来才是小荷做不深、阿福做不纯的壁垒。</p>
     </div>
+      <div class="reveal mt28">
+        <a class="file" href="source/作业一_竞品分析报告.html" target="_blank"><span class="fic">📄</span><span class="ft">作业一 · 竞品分析报告（完整文字定稿）<small>点击查看 / 下载完整报告 →</small></span></a>
+      </div>
   </div>
 </section>
 
@@ -847,7 +811,7 @@
 <section id="growth" class="page">
   <div class="inner">
     <div class="sec-head reveal"><div class="sec-no alt">02</div><div><div class="kicker">作业二</div><h2>增长方案 · 承接洞察</h2></div></div>
-    <p class="sub reveal">一条归因链：诊断问题 → 定战略 → 筛需求 → 转功能 → 获客变现 → 验证落地。如果我有幸加入好伴担任产品经理，怎样打造产品促进业务增长。</p>
+    <p class="sub reveal">如果我有幸加入好伴担任产品经理会这样打造产品促进业务增长。一条归因链：诊断问题 → 定战略 → 筛需求 → 转功能 → 获客变现 → 验证落地。</p>
 
     <!-- 漏斗诊断 -->
     <div class="reveal mt40">
@@ -916,7 +880,7 @@
       <h3>价值（对北极星的贡献）× 成本（实现难度）</h3>
       <div class="pmwrap">
         <div class="pm">
-          <span class="yl">价值（对留存/陪伴的贡献）→</span>
+          <span class="yl"><span>价值（对留存/陪伴的贡献）→</span></span>
           <span class="xl">实现成本 / 难度 →</span>
           <div class="gl" style="left:50%;top:8%;bottom:8%;width:1px"></div>
           <div class="gl" style="top:50%;left:8%;right:8%;height:1px"></div>
@@ -984,6 +948,7 @@
       <h3>家庭关系链：一鱼两吃</h3>
       <div class="chain">
         <div class="core">家庭关系链（一个子女 + 父母 3–5 人档案）</div>
+        <div class="cline"><i class="stem"></i><i class="bar"></i><i class="dropL"></i><i class="dropR"></i></div>
         <div class="split">
           <div class="arm"><div class="pill"><div class="h">裂变拉来一个家庭 <span class="em">（获客）</span></div><p>一个付费子女带来一个家庭，获客成本被家庭规模摊薄——大厂个人账户做不出的护城河。</p></div></div>
           <div class="arm"><div class="pill"><div class="h">家庭订阅收一个家庭的钱 <span class="em">（变现）</span></div><p>以家庭为单位订阅，客单更高且抗流失——为父母付费意愿远高于为自己。</p></div></div>
@@ -1010,6 +975,9 @@
       </div>
       <p class="note">先验证前两个——"父母会不会用"和"主动关怀能不能留住人"，这俩错了整套战略不成立。具体阈值需用真实数据校准，这里给的是验证项和方向。</p>
     </div>
+      <div class="reveal mt28">
+        <a class="file" href="source/作业二_增长方案.html" target="_blank"><span class="fic">📄</span><span class="ft">作业二 · 增长方案（完整文字定稿）<small>点击查看 / 下载完整报告 →</small></span></a>
+      </div>
   </div>
 </section>
 
@@ -1145,13 +1113,6 @@
       </div>
     </div>
 
-    <div class="apx-group reveal">
-      <h3>完整定稿（可下载查看）<span class="ln"></span></h3>
-      <div class="filelist">
-        <a class="file" href="source/作业一_竞品分析报告.html" target="_blank"><span class="fic">📄</span><span class="ft">作业一 · 竞品分析报告<small>完整文字定稿</small></span></a>
-        <a class="file" href="source/作业二_增长方案.html" target="_blank"><span class="fic">📄</span><span class="ft">作业二 · 增长方案<small>完整文字定稿</small></span></a>
-      </div>
-    </div>
   </div>
 </section>
 
